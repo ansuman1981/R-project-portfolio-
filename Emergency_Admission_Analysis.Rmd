@@ -28,3 +28,9 @@ head(df)
 # summary statistics
 summary(df)
 ```
+
+The head(df) output shows some first few observation of the data set,allow us to understand how the data is structured.it display different variables such as MatchIPM, Patient_num, MHAdmissionDate,Discharge and so on.
+
+The summary(df) output shows whole summary of the data set, allows us to understand how the data is structured like it give us minmum, maximum,mean, median, length, quartiles and help us to understand the distribution of data.its also help to understand that the data contain both catagorical and numeric.
+
+Overall, the dataset appears to have a mix of different variable types, and the summary statistics provide a quick overview of the distribution and characteristics of the data.
