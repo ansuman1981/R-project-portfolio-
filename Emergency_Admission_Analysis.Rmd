@@ -144,3 +144,25 @@ head(df$LOS_category)
 # Check frequency
 table(df$LOS_category)
 ```
+
+## Question 8 Plot a visualisation diagram to show how this binned LOS depends on the column ‘AdmissionType’. Does this variable eventually impact the LOS? You can decide what visualisation diagram to use or whether to use facets in your solution. Write a few lines on your conclusion. 	
+
+```{r}
+# Load ggplot2
+library(ggplot2)
+
+# Bar chart
+ggplot(df, aes(x = LOS_category, fill = AdmissionType)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "LOS Category vs Admission Type",
+    x = "Length of Stay Category",
+    y = "Count"
+  )
+```
+
+
+The bar chart shows the distribution of length of stay categories across different admission types.
+
+From the visualization, we can observe how different admission types are associated with different lengths of stay.From the bar chart, most admissions fall into the ‘short stay’ category, regardless of admission type.If one AdmissionType (for example, Emergency vs Transfer) has relatively more ‘long stay’ cases, then admission type appears to influence LOS. In this dataset, [describe what you actually see].
+
