@@ -9,4 +9,22 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-xcdxvds
+##Question 1 First, read in the data set and save the contents to a dataframe df. What are the variable types of each of the columns?(2 mark)
+
+```{r}
+df <- read.csv("EmergencyAdmission_Dirty.csv")
+str(df)
+```
+
+MatchIPM, Patient_Num, AdmissionAge, Death, Operative, Complications and Endoscopic are numeric (integer) variables.
+
+Dates, gender and clinical info (Outcome, DiagnosisText, etc.) are stored as character variables.
+
+##Question 2 Do a summary statistics description of the data using R with summary and head.(3 marks)
+
+```{r}
+# view some row
+head(df)
+# summary statistics
+summary(df)
+```
