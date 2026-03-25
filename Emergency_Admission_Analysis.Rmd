@@ -45,3 +45,12 @@ sum(is.na(df))
 # Display rows with missing values
 df[!complete.cases(df), ]
 ```
+
+To handle the missing data, different approaches can be taken depending on the situation. If the number of missing values is small, it is reasonable to remove those rows using na.omit(df) so that they do not affect the analysis.There are 14 missing values in total, all in the Death column. I would not impute them because Death is an important outcome variable. Since 14 out of 15,297 rows is very small, I would either (a) keep these rows in the dataset but exclude Death when it is NA from analyses where it is the outcome, or (b) remove these 14 rows using df_clean <- na.omit(df) and clearly report this.
+
+```{r}
+# Remove missing values
+df_clean <- na.omit(df)
+```
+
+However, if the missing values are significant or the data is important, it is better to replace them instead of removing them. For example, missing values in numeric columns can be replaced using the mean to retain the overall dataset information.
