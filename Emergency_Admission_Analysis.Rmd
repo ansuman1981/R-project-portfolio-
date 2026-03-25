@@ -121,3 +121,26 @@ mean_LOS_filtered
 ```
 By removing stays longer than 30 days from the calculation, we reduce the influence of rare, very long admissions and get an average more representative of typical patients.
 The filtered mean is lower than the original mean, confirming that very long stays were pulling the average up.
+
+## Question 7 The hospital wants to have a general idea of this length of stay (LOS) further – for eg. does it depend on admission type? To do this, it intends to bin this LOS into the following categories:
+a.	0 days		-	no stay
+b.	1 to 3 days 		-	short stay
+c.	4 days to 7 days  	-	medium stay
+d.	7 days or more	-	long stay
+Write R code to create a new ‘transformed’ ordinal variable for this length of stay. 
+
+```{r}
+# Create categorical LOS variable
+df$LOS_category <- cut(
+  df$LOS,
+  breaks = c(-Inf, 0, 3, 7, Inf),
+  labels = c("no stay", "short stay", "medium stay", "long stay"),
+  right = TRUE
+)
+
+# View results
+head(df$LOS_category)
+
+# Check frequency
+table(df$LOS_category)
+```
