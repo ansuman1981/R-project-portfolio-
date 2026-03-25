@@ -34,3 +34,14 @@ The head(df) output shows some first few observation of the data set,allow us to
 The summary(df) output shows whole summary of the data set, allows us to understand how the data is structured like it give us minmum, maximum,mean, median, length, quartiles and help us to understand the distribution of data.its also help to understand that the data contain both catagorical and numeric.
 
 Overall, the dataset appears to have a mix of different variable types, and the summary statistics provide a quick overview of the distribution and characteristics of the data.
+
+## Question 3 The hospital has reverted there is some ‘missing data’ in the columns, but is unable to tell you where the missing data is or the columns. Write R code to determine where the missing data and how many of them. What will you do with them? (There is no ‘model’ answer here, but you have to justify your reasons of what to do to the missing data.)
+
+```{r}
+# count missing values of each colum
+colSums(is.na(df))
+# total number of missing values in dataset
+sum(is.na(df))
+# Display rows with missing values
+df[!complete.cases(df), ]
+```
