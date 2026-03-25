@@ -166,3 +166,78 @@ The bar chart shows the distribution of length of stay categories across differe
 
 From the visualization, we can observe how different admission types are associated with different lengths of stay.From the bar chart, most admissions fall into the ‘short stay’ category, regardless of admission type.If one AdmissionType (for example, Emergency vs Transfer) has relatively more ‘long stay’ cases, then admission type appears to influence LOS. In this dataset, [describe what you actually see].
 
+## Question 9 Further using visualisation, determine if there is a relation between the binned LOS and Death column. (death =1 ) You can decide what visualisation diagram to use or whether to use facets in your solution. Write a few lines on your conclusion. 
+
+```{r}
+# Convert Death to factor for better labels
+df$Death <- factor(df$Death, labels = c("Alive", "Died"))
+
+# Bar chart
+library(ggplot2)
+
+ggplot(df, aes(x = LOS_category, fill = Death)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "LOS Category vs Death",
+    x = "Length of Stay Category",
+    y = "Count"
+  )
+```
+The bar chart shows the relationship between length of stay categories and patient outcomes (Alive or Died).
+
+From the visualization, we can observe how death cases are distributed across different LOS categories. If higher numbers of deaths are seen in longer stay categories, it may indicate that patients with longer hospital stays have more severe conditions.
+
+Overall, there appears to be a relationship between LOS and death, as longer stays may be associated with higher chances of mortality.
+
+## Question 10 Plot a visualisation diagram to show how the column variable ‘Admission Age’ compares against the original LOS. Write a couple lines on your findings.	
+
+```{r}
+# Scatter plot
+library(ggplot2)
+
+ggplot(df, aes(x = AdmissionAge, y = LOS)) +
+  geom_point(alpha = 0.5) +
+  labs(
+    title = "Admission Age vs Length of Stay",
+    x = "Admission Age",
+    y = "Length of Stay (days)"
+  )
+```
+The scatter plot shows the relationship between admission age and length of stay.
+
+From the visualization, we can observe whether there is any trend between age and LOS. If the points show an upward pattern, it suggests that older patients tend to stay longer. However, if the points are widely scattered, it indicates that there is no strong relationship between age and LOS.
+
+Overall, the relationship between admission age and LOS appears to be weak, as there is no clear pattern in the data.
+
+## Question 11 Using facets, combine the 2 earlier visualisations to determine how admission age and the admission type may impact the LOS. (hint: you may have to decide whether to use binned or the original LOS.) Write a couple lines on your findings.
+
+```{r}
+library(ggplot2)
+
+ggplot(df, aes(x = AdmissionAge, y = LOS)) +
+  geom_point(alpha = 0.5) +
+  facet_wrap(~ AdmissionType) +
+  labs(
+    title = "Admission Age vs LOS by Admission Type",
+    x = "Admission Age",
+    y = "Length of Stay (days)"
+  )
+```
+Across admission types, the relationship between age and LOS remains weak; in each panel, points are scattered without a strong pattern.
+Some admission types may show slightly more long stays for older patients, but overall age does not strongly determine LOS, while the admission type itself affects the range of LOS.
+
+
+## CONCLUSION
+This analysis of the Emergency Admission dataset provides key insights into hospital admission patterns and factors affecting length of stay (LOS). Initial exploration through variable identification and summary statistics established a solid foundation for understanding the data structure and key characteristics.
+
+Handling missing data was essential for analysis quality. Only 14 missing values were found in the Death column (out of 15,297 rows), and these were managed by either exclusion from mortality analyses or row removal via `na.omit()`, ensuring reliable subsequent calculations without introducing imputation bias.
+
+The LOS variable was calculated by converting admission and discharge dates to proper Date format, yielding days stayed. Recognizing mean LOS vulnerability to extreme outliers, median (more robust central tendency) and mode (most common stay length) were computed alongside a filtered analysis excluding stays > 30 days, providing a clearer picture of typical patient stays.
+
+Categorizing LOS into ordinal groups—no stay (<= 0 days), short stay (1-3 days), medium stay (4-7 days), and long stay (>= 7 days)—enabled straightforward pattern recognition across patient subgroups.
+
+Visualizations revealed admission type significantly influences LOS distribution, with certain types showing higher proportions of longer stays. Longer LOS categories also correlated with elevated mortality rates, suggesting more severe cases, while admission age showed no strong relationship with LOS across all analyses.
+
+This comprehensive approach demonstrates how systematic data preprocessing, robust statistical measures, and targeted visualizations unlock actionable healthcare insights. The findings offer hospitals practical guidance for patient flow optimization, bed allocation, and resource planning.
+
+Practical classes and weekly R Markdown resources were instrumental, building both technical proficiency and confidence in translating complex healthcare data into strategic decision-making tools.
