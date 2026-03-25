@@ -70,3 +70,21 @@ proportion <- operation_count / total_count
 # Display result
 proportion
 ```
+
+## Question 5 The hospital also wants to know what the average lengths of stay are for the admission resulting from the Emergency department. This may be obtained by subtracting the columns MHAdmissionDate and the DischargeDate. Write the R output to determine this average length of days by creating a new variable ‘LOS’. (Hint: You will need to do transformation of the data to a numeric format as well.) 
+
+```{r}
+# convert columns to data format
+df$MHAdmissionDate <- as.Date(df$MHAdmissionDate, format ="%d-%b-%y")
+df$DischargeDate <- as.Date(df$DischargeDate, format ="%d-%b-%y")
+
+# create length of stay 
+df$LOS <- as.numeric(df$DischargeDate - df$MHAdmissionDate)
+# VIEW LOS
+head(df$LOS)
+# calculate average LOS 
+mean_LOS <- mean(df$LOS , na.rm = TRUE)
+# display results 
+mean_LOS
+```
+
