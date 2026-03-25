@@ -54,3 +54,19 @@ df_clean <- na.omit(df)
 ```
 
 However, if the missing values are significant or the data is important, it is better to replace them instead of removing them. For example, missing values in numeric columns can be replaced using the mean to retain the overall dataset information.
+
+## Question 4 Write code to determine the proportion of admission that results in an operational procedure.
+
+```{r}
+# Check how many admissions have an operation (non-missing OperationDate)
+operation_count <- sum(!is.na(df$OperationDate))
+
+# Total number of admissions
+total_count <- nrow(df)
+
+# Proportion
+proportion <- operation_count / total_count
+
+# Display result
+proportion
+```
