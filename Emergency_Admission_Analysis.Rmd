@@ -88,3 +88,36 @@ mean_LOS <- mean(df$LOS , na.rm = TRUE)
 mean_LOS
 ```
 
+
+## Question 6	The hospital is of the opinion that this LOS is not accurate in determining the average length of stay.  There are stays that may be especially long and distort the average. There are two ways to remedy this. 
+a.	Compute the mode and median of this LOS instead and revert to the hospital. 
+b.	Filter off the stays that are longer than 30 days from the calculation. (Note: in your filtering, you must still keep a copy of the original data rows and not delete them. 
+
+## (a) Compute the median and mode of LOS
+
+```{r}
+# Median of LOS
+median_LOS <- median(df$LOS, na.rm = TRUE)
+median_LOS
+
+# Mode of LOS (custom function)
+mode_function <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+mode_LOS <- mode_function(df$LOS)
+mode_LOS
+```
+Median is robust to very long stays, so it gives a better central value than the mean when there are outliers. Mode shows the most common length of stay.
+
+## (B)reate a filtered dataset (without deleting original data)
+```{r}
+df_filtered <- df[df$LOS <= 30, ]
+
+# Calculate new average LOS
+mean_LOS_filtered <- mean(df_filtered$LOS, na.rm = TRUE)
+mean_LOS_filtered
+```
+By removing stays longer than 30 days from the calculation, we reduce the influence of rare, very long admissions and get an average more representative of typical patients.
+The filtered mean is lower than the original mean, confirming that very long stays were pulling the average up.
