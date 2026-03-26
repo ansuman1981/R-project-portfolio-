@@ -4,7 +4,7 @@ install.packages("qdap")
 install.packages("worldcloud")
 
 install.packages("tidytext") # help you to breakdown text into tokens and work with them in tidy table
-install.packages("dplyr")
+install.packages("dplyr") # helps to manupiulate data frames 
 
 library(tidytext)
 library(dplyr)
@@ -21,5 +21,11 @@ positive_row <- subset(airline,
                        airline_sentiment.confidence > xg)
 nrow(positive_row)
 #  now we decide how many good words 
-ng<- 100 #From all words in these positive tweets
+ng<- 100   #From all words in these positive tweets
 
+#%>%: the pipe; it means “take the result on the left and pass it into the next function.”
+#select(text): from pos_rows, keep only the text column (we only need the tweet text now).
+# unnest_tokens(word, text): take that text column and split it into individual words:
+positive_words <- positive_row %>%
+  select(text) %>%
+  unnest_tokens(word, text)
