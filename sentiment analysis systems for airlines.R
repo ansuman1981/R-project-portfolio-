@@ -21,7 +21,6 @@ positive_row <- subset(airline,
                        airline_sentiment.confidence > xg)
 nrow(positive_row)
 #  now we decide how many good words 
-xb <- 0.7
 
 ng<- 100   #From all words in these positive tweets
 
@@ -39,4 +38,8 @@ head(good_words_count,10)
 
 #2iii
 # get how many bad words less than the xb
-xb <
+xb <- 0.7
+
+nagative_row <- subset(airline,
+                       airline_sentiment == "negative" &
+                       airline_sentiment.confidence < xb)
