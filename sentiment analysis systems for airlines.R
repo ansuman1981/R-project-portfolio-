@@ -40,6 +40,14 @@ head(good_words_count,10)
 # get how many bad words less than the xb
 xb <- 0.7
 
-nagative_row <- subset(airline,
+negative_row <- subset(airline,
                        airline_sentiment == "negative" &
                        airline_sentiment.confidence < xb)
+nrow(negative_row) # display negative row 
+
+# now decide how many negative words 
+nb <-100
+negative_words <- negative_row %>%
+  select(text)%>%
+  unnest_tokens(word, text)
+
