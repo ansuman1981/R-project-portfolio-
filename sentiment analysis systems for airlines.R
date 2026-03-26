@@ -55,3 +55,5 @@ negative_words <- negative_row %>%
 bad_words_count <- negative_words %>%
   count(word, sort =TRUE)
 head(bad_words_count,10)
+
+
