@@ -51,3 +51,7 @@ negative_words <- negative_row %>%
   select(text)%>%
   unnest_tokens(word, text)
 
+# now find the top negative comment in the tweet.
+bad_words_count <- negative_words %>%
+  count(word, sort =TRUE)
+head(bad_words_count,10)
