@@ -29,3 +29,8 @@ ng<- 100   #From all words in these positive tweets
 positive_words <- positive_row %>%
   select(text) %>%
   unnest_tokens(word, text)
+
+## Which words appear most often in my positive tweets, and how many times.
+good_words_count <- positive_words %>%
+  count(word, sort=TRUE)
+head(good_words_count,10)
