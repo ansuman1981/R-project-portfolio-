@@ -73,4 +73,9 @@ head(vocab,10)
 all_words <- airline %>%
   mutate(tweet_id = row_number()) %>%
   select(tweet_id, text) %>%
-  unnest_tokens(words,text)
+  unnest_tokens(word,text)
+names(all_words)
+
+# now combine the tweet with vocab 
+words_with_sent <- all_words %>%
+  inner_join(vocab, by = "word")
