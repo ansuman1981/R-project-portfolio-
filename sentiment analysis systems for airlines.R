@@ -79,3 +79,9 @@ names(all_words)
 # now combine the tweet with vocab 
 words_with_sent <- all_words %>%
   inner_join(vocab, by = "word")
+head(words_with_sent)
+
+# now we will get n_good and n_bad per tweets 
+sent_count <- words_with_sent %>%
+  
+  
