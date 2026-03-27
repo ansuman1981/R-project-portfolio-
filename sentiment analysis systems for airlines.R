@@ -8,6 +8,7 @@ install.packages("dplyr") # helps to manupiulate data frames
 
 library(tidytext)
 library(dplyr)
+library(tidyr)
 #2i
 airline <- read.csv("airline_sentiment (2).csv")
 dim(airline)
@@ -83,5 +84,13 @@ head(words_with_sent)
 
 # now we will get n_good and n_bad per tweets 
 sent_count <- words_with_sent %>%
+  group_by(tweet_id, sentiment) %>%
+  summarise(n = n(), .groups = "drop") %>% 
+  pivot_wider(names_from = sentiment,
+              values_from = n,
+              values_fill = 0 )
+head(sent_count)
+
+
   
   
