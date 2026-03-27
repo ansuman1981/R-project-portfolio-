@@ -56,4 +56,11 @@ bad_words_count <- negative_words %>%
   count(word, sort =TRUE)
 head(bad_words_count,10)
 
+#2iv
+# create a row with  good and bad labled 
+good_lexicon_labeled <- good_words_count %>%
+  mutate(sentiment ="good")
 
+bad_lexicon_labeled <- bad_words_count %>%
+  mutate(sentiment = "bad")
+  
