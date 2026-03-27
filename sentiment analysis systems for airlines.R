@@ -91,6 +91,22 @@ sent_count <- words_with_sent %>%
               values_fill = 0 )
 head(sent_count)
 
+#Now we create ngoo,nabad and the sentiment score :
+#turn count +1/-1
+# ruled based sentiments prediction for every good and bad tweets 
+sent_scores <- sent_count %>%
+  mutate(
+    n_good = good,
+    n_bad = bad,
+    score = n_good - n_bad,
+    pred_sent = ifelse(n_good>n_bad,1,-1)
+    )
+head(sent_scores)
+    
+    
+
+
+
 
   
   
