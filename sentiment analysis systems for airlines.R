@@ -65,4 +65,12 @@ bad_lexicon_labeled <- bad_words_count %>%
   mutate(sentiment = "bad")
 # combine the bad and good label
 vocab <- bind_rows(good_lexicon_labeled,bad_lexicon_labeled)
-  
+
+head(vocab,10)
+
+#2v
+# create and turn every tweet into words  
+all_words <- airline %>%
+  mutate(tweet_id = row_number()) %>%
+  select(tweet_id, text) %>%
+  unnest_tokens(words,text)
