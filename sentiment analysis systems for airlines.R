@@ -63,4 +63,6 @@ good_lexicon_labeled <- good_words_count %>%
 
 bad_lexicon_labeled <- bad_words_count %>%
   mutate(sentiment = "bad")
+# combine the bad and good label
+vocab <- bind_rows(good_lexicon_labeled,bad_lexicon_labeled)
   
