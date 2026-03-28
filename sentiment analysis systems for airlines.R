@@ -113,6 +113,10 @@ labels<- air_with_id %>%
   mutate(true_sent = ifelse(airline_sentiment =="positive",1,-1)) %>%
   select(tweet_id, airline_sentiment , true_sent)
 
+# join true labels with the predictions 
+results <- labels %>%
+  inner_join(sent_scores %>% select(tweet_id, pred_sent),
+             by = "tweet_id")
 
 
   
