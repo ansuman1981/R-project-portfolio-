@@ -103,8 +103,11 @@ sent_scores <- sent_count %>%
     )
 head(sent_scores)
     
-    
-
+#2vi
+# now compare the creted sentiment to the real airline_sentiment 
+# make clean label table  
+air_with_id <- airline %>%
+  mutate(tweet_id = row_number())
 
 
 
