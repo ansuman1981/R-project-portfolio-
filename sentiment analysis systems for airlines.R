@@ -125,5 +125,9 @@ summary_count <- results %>%
   summarise(n=n(), .groups ="drop")
 summary_count
 
+# see how many we get correct only 
+correct_only <- summary_count %>%
+  filter(correct == TRUE)
+correct_only
   
   
