@@ -108,6 +108,10 @@ head(sent_scores)
 # make clean label table  
 air_with_id <- airline %>%
   mutate(tweet_id = row_number())
+labels<- air_with_id %>%
+  filter(airline_sentiment %in% c("positive", "negative")) %>%
+  mutate(true_sent = ifelse(airline_sentiment =="positive",1,-1)) %>%
+  select(tweet_id, airline_sentiment , true_sent)
 
 
 
