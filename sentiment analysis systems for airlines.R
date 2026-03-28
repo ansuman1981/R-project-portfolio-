@@ -118,6 +118,12 @@ results <- labels %>%
   inner_join(sent_scores %>% select(tweet_id, pred_sent),
              by = "tweet_id")
 
+# count how many are correct 
+summary_count <- results %>%
+  mutate(correct =(true_sent == pred_sent)) %>%
+  group_by(airline_sentiment, correct)%>%
+  summarise(n=n(), .groups ="drop")
+summary_count
 
   
   
