@@ -129,5 +129,14 @@ summary_count
 correct_only <- summary_count %>%
   filter(correct == TRUE)
 correct_only
-  
-  
+
+#2VII) compute scaled sentiment 
+sent_scores_scaled <- sent_scores %>%
+  mutate(
+    scaled_sent = ifelse(
+      n_good + n_bad >0,
+      n_good/ (n_good +n_bad),
+      NA_real_ # 0 if prefer
+    )
+  )
+head(sent_scores_scaled)  
